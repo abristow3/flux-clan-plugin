@@ -1,4 +1,4 @@
-package com.clanevents;
+package com.flux;
 
 import com.google.api.services.sheets.v4.model.ValueRange;
 import lombok.RequiredArgsConstructor;

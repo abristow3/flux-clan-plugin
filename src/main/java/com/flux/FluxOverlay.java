@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents;
+package com.flux;
 
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.OverlayPanel;
@@ -41,13 +41,13 @@ import java.util.List;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
-public class ClanEventsOverlay extends OverlayPanel
+public class FluxOverlay extends OverlayPanel
 {
     @Inject
-    private ClanEventsConfig config;
+    private FluxConfig config;
 
     @Inject
-    private ClanEventsOverlay()
+    private FluxOverlay()
     {
         setPosition(OverlayPosition.TOP_CENTER);
         getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Clan Events overlay"));

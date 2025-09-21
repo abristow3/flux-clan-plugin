@@ -1,13 +1,13 @@
-package com.clanevents;
+package com.flux;
 
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class ClanEventsPluginTest
+public class FluxPluginTest
 {
 	public static void main(String[] args) throws Exception
 	{
-		ExternalPluginManager.loadBuiltin(ClanEventsPlugin.class);
+		ExternalPluginManager.loadBuiltin(FluxPlugin.class);
 		RuneLite.main(args);
 	}
 }

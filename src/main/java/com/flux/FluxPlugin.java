@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents;
+package com.flux;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -41,37 +41,36 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 @Slf4j
 @PluginDescriptor(
-		name = "Clan Events",
+		name = "Flux",
 		description = "A plugin used to keep track of clan events.",
-		tags = {"ely", "elysium", "cc", "hunt", "pass", "event", "clan"}
+		tags = {"flux", "cc", "hunt", "pass", "event", "clan"}
 )
-public class ClanEventsPlugin extends Plugin
+public class FluxPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private ClanEventsConfig config;
+	private FluxConfig config;
 
 	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
-	private ClanEventsOverlay overlay;
+	private FluxOverlay overlay;
 
 	@Inject
 	private SkillIconManager skillIconManager;
 
 	@Inject
 	private ClientToolbar clientToolbar;
-	private ClanEventsPanel panel;
+	private FluxPanel panel;
 	private NavigationButton uiNavigationButton;
 
-	static final String CONFIG_GROUP = "clanevents";
+	static final String CONFIG_GROUP = "flux";
 
 	@Override
 	protected void startUp()
@@ -93,18 +92,14 @@ public class ClanEventsPlugin extends Plugin
 		{
 			panel.removeAll();
 			panel.init(config);
-			if(!config.sheetId().equals("") && !config.apiKey().equals("")){
-				clientToolbar.addNavigation(uiNavigationButton);
-			}else{
-				clientToolbar.removeNavigation(uiNavigationButton);
-			}
+			clientToolbar.addNavigation(uiNavigationButton);
 		}
 	}
 
 	private void startClanPanel()
 	{
 		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
-		panel = injector.getInstance(ClanEventsPanel.class);
+		panel = injector.getInstance(FluxPanel.class);
 		panel.init(config);
 		uiNavigationButton = NavigationButton.builder()
 				.tooltip("Clan Events")
@@ -112,14 +107,12 @@ public class ClanEventsPlugin extends Plugin
 				.priority(5)
 				.panel(panel)
 				.build();
-		if(!config.sheetId().equals("") && !config.apiKey().equals("")){
-			clientToolbar.addNavigation(uiNavigationButton);
-		}
+        clientToolbar.addNavigation(uiNavigationButton);
 	}
 
 	@Provides
-	ClanEventsConfig provideConfig(ConfigManager configManager)
+    FluxConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ClanEventsConfig.class);
+		return configManager.getConfig(FluxConfig.class);
 	}
 }

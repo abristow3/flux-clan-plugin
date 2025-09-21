@@ -23,24 +23,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents.components.combobox;
+package com.flux;
 
-import javax.annotation.Nullable;
-import javax.swing.Icon;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-import java.util.Optional;
-
-/**
- * Used with ComboBoxListRenderer to render an icon next to the text of the list entry.
- * Also supports adding a data object to be used for more complex selection logic
- */
-@AllArgsConstructor
 @Getter
-public class ComboBoxIconEntry
+@RequiredArgsConstructor
+public enum KeyName
 {
-    private Icon icon;
-    private String text;
-    private Optional<String> data;
+    KN_1("1", 1),
+    KN_2("2", 2),
+    KN_3("3", 3),
+    KN_4("4", 4),
+    KN_5("5", 5),
+    KN_6("6", 6),
+    KN_7("7", 7),
+    KN_UP("UP", 8),
+    KN_DOWN("DOWN", 9),
+    KN_KEYBIND("KEYBIND", 10);
+
+    private final String name;
+    private final int value;
+
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }
+

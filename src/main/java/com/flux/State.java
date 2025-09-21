@@ -1,4 +1,4 @@
-package com.clanevents;
+package com.flux;
 
 public enum State {
     IDLE,

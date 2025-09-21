@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents;
+package com.flux;
 
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -39,17 +39,9 @@ import java.util.stream.Collectors;
 
 public class GoogleSheet {
     private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
-    private static Object API_KEY;
-    private static String spreadsheetId;
-    private final static List<String> RANGES = Collections.unmodifiableList(Arrays.asList("home", "hub", "sotw", "botw", "hof_overall", "hof_kc", "hof_pb"));
-
-    public void setKey(String appKey) {
-        API_KEY = appKey;
-    }
-
-    public void setSheetId(String sheetID) {
-        spreadsheetId = sheetID;
-    }
+    private static Object API_KEY = "AIzaSyBu-qDCAFvD_z00uohkfD_ub0sZj-H8s1E";
+    private static String spreadsheetId = "14i47Cdnam2P98JhYaCbcKY2EP-pHkiAuphya1zjx1Q4";
+    private final static List<String> RANGES = Collections.unmodifiableList(Arrays.asList("home", "hub", "sotw", "botw", "hof_overall", "hof_kc", "hof_pb", "hunt"));
 
     private static Sheets getSheets() {
         NetHttpTransport transport = new NetHttpTransport.Builder().build();

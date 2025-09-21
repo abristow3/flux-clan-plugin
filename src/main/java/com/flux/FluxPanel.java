@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents;
+package com.flux;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -34,9 +34,9 @@ import java.net.URISyntaxException;
 import java.util.*;
 import javax.swing.*;
 
-import com.clanevents.components.combobox.ComboBoxIconEntry;
-import com.clanevents.components.combobox.ComboBoxIconListRenderer;
-import com.clanevents.constants.EntrySelect;
+import com.flux.components.combobox.ComboBoxIconEntry;
+import com.flux.components.combobox.ComboBoxIconListRenderer;
+import com.flux.constants.EntrySelect;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,7 +56,7 @@ import net.runelite.client.util.LinkBrowser;
 import net.runelite.client.util.SwingUtil;
 
 @Slf4j
-class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
+class FluxPanel extends PluginPanel implements PropertyChangeListener {
     private final JButton buttonArea = createRefreshButton();
     private final JPanel ssArea = new JPanel();
     private final Service service = new Service();
@@ -75,13 +75,7 @@ class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
 
     private final Timer timer = new Timer(0, timertask);
 
-    public void init(ClanEventsConfig config) {
-        if (config.apiKey().equals("") || config.sheetId().equals("")) {
-            JTextArea text = new JTextArea();
-            text.append("Enter a valid Google Sheet ID " + "\n" + "or API Key in the config.");
-            this.add(text);
-            return;
-        }
+    public void init(FluxConfig config) {
         InputMap im = getInputMap(WHEN_IN_FOCUSED_WINDOW);
         ActionMap am = getActionMap();
 
@@ -106,10 +100,6 @@ class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
             }
         });
 
-        //Google sheet setup
-        sheet.setKey(config.apiKey());
-        sheet.setSheetId(config.sheetId());
-
         //Remove the annoying "focus paint" effect on the dropdown
         dropdown.setFocusable(false);
 
@@ -131,6 +121,7 @@ class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
         setEntry(config.entry_5());
         setEntry(config.entry_6());
         setEntry(config.entry_7());
+        setEntry(config.entry_8());
 
         //Select the first entry
         dropdown.setSelectedIndex(0);
@@ -219,9 +210,9 @@ class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
     private class KeyAction extends AbstractAction {
 
         KeyName key;
-        ClanEventsConfig config;
+        FluxConfig config;
 
-        KeyAction(KeyName key, ClanEventsConfig config) {
+        KeyAction(KeyName key, FluxConfig config) {
             this.key = key;
             this.config = config;
         }
@@ -305,6 +296,10 @@ class ClanEventsPanel extends PluginPanel implements PropertyChangeListener {
             case HOF_PB:
                 icon = ImageUtil.loadImageResource(getClass(), "hof.png");
                 dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Hall of Fame - PB", Optional.of("hof_pb")));
+                break;
+            case HUNT:
+                icon = ImageUtil.loadImageResource(getClass(), "hunt.png");
+                dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " The Hunt", Optional.of("hunt")));
                 break;
         }
     }

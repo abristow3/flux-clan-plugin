@@ -23,18 +23,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.clanevents;
+package com.flux;
 
-import com.clanevents.constants.EntrySelect;
+import com.flux.constants.EntrySelect;
 import net.runelite.client.config.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-@ConfigGroup(ClanEventsPlugin.CONFIG_GROUP)
-public interface ClanEventsConfig extends Config
+@ConfigGroup(FluxPlugin.CONFIG_GROUP)
+public interface FluxConfig extends Config
 {
-	int REFRESH_PERIOD_MIN = 5;
+	int REFRESH_PERIOD_MIN = 1;
 	int REFRESH_PERIOD_MAX = 1440;
 
 	@ConfigSection(
@@ -133,24 +133,6 @@ public interface ClanEventsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 1,
-			keyName = "sheetId",
-			name = "Google Sheet ID:",
-			description = "ID of the Google Sheet to read.",
-			section = panelSection
-	)
-	default String sheetId() { return "1YMcXxSL3s1NEzsPVMMkPn7EdGNFKENiwqNyDKkJTO80"; }
-
-	@ConfigItem(
-			position = 2,
-			keyName = "apiKey",
-			name = "Google API Key:",
-			description = "Key used to access the Google Sheet (ask your clan for one).",
-			section = panelSection
-	)
-	default String apiKey() { return ""; }
-
-	@ConfigItem(
 			position = 4,
 			keyName = "autoRefresh",
 			name = "Automatic Refresh",
@@ -244,4 +226,13 @@ public interface ClanEventsConfig extends Config
 			section = panelSection
 	)
 	default EntrySelect entry_7() { return EntrySelect.HOF_PB; }
+
+    @ConfigItem(
+            position = 13,
+            keyName = "entry_8",
+            name = "Entry 8",
+            description = "Selects what to show for entry 8 of the Clan Events panel.",
+            section = panelSection
+    )
+    default EntrySelect entry_8() { return EntrySelect.HUNT; }
 }
